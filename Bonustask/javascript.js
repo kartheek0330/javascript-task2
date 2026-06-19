@@ -1,4 +1,3 @@
-// ✈️ Flight Ticket Booking
 
 // Variables
 var passengerName = "Kartheek";
