@@ -75,8 +75,8 @@ if (cashRequest <= availableFunds) {
 }
 
 //task5//
-let savedUser = "admin";
-let savedPass = "67891";
+let savedUser = "kartheek123";
+let savedPass = "031021";
 
 let enteredUser = prompt("Enter Username:");
 let enteredPass = prompt("Enter Password:");
