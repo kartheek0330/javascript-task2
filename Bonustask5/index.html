@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EMPLOYEE MANAGEMENT CONSOLE SYSTEM</title>
+</head>
+<body>
+  <script>
+ 
+// ===============================
+// EMPLOYEE MANAGEMENT SYSTEM
+// ===============================
+ 
+let employees = [
+    {
+        id: 101,
+        name: "kartheek",
+        department:"HR",
+        salary: 35000
+    },
+    {
+        id: 102,
+        name: "prasad",
+        department: "testing",
+        salary: 55000
+    },
+    {
+        id: 103,
+        name: "Ravi",
+        department: "Data Analyst",
+        salary: 42000
+    }
+];
+ 
+// =======================================
+// 1. Add Employee
+// =======================================
+ 
+function addEmployee(id, name, department, salary) {
+ 
+    employees.push({
+        id: id,
+        name: name,
+        department: department,
+        salary: salary
+    });
+ 
+    console.log("Employee Added Successfully");
+}
+ 
+addEmployee(104, "Avi", "Designer", 47000);
+ 
+ 
+// =======================================
+// 2. View Employees
+// =======================================
+ 
+function viewEmployees() {
+ 
+    console.log("===== EMPLOYEE LIST =====");
+ 
+    employees.forEach(function(emp) {
+ 
+        console.log(
+            "ID :", emp.id,
+            "| Name :", emp.name,
+            "| Department :", emp.department,
+            "| Salary : ₹" + emp.salary
+        );
+ 
+    });
+ 
+}
+ 
+viewEmployees();
+ 
+ 
+// =======================================
+// 3. Search Employee by ID
+// =======================================
+ 
+function searchEmployee(id) {
+ 
+    let employee = employees.find(function(emp) {
+        return emp.id === id;
+    });
+ 
+    if (employee) {
+ 
+        console.log("Employee Found");
+        console.log(employee);
+ 
+    } else {
+ 
+        console.log("Employee Not Found");
+ 
+    }
+ 
+}
+ 
+searchEmployee(102);
+ 
+ 
+// =======================================
+// 4. Calculate Salary + Bonus
+// =======================================
+ 
+function calculateBonus(id) {
+ 
+    let employee = employees.find(function(emp) {
+        return emp.id === id;
+    });
+ 
+    if (employee) {
+ 
+        let bonus = employee.salary * 0.10;
+        let total = employee.salary + bonus;
+ 
+        console.log("Salary Details");
+        console.log("Employee :", employee.name);
+        console.log("Salary : ₹" + employee.salary);
+        console.log("Bonus : ₹" + bonus);
+        console.log("Total Salary : ₹" + total);
+ 
+    }
+ 
+}
+ 
+calculateBonus(103);
+ 
+ 
+// =======================================
+// 5. Remove Employee
+// =======================================
+ 
+function removeEmployee(id) {
+ 
+    employees = employees.filter(function(emp) {
+        return emp.id !== id;
+    });
+ 
+    console.log("Employee Removed Successfully");
+ 
+}
+ 
+removeEmployee(101);
+ 
+viewEmployees();
+ 
+ 
+// =======================================
+// 6. Sort Employees by Salary
+// =======================================
+ 
+function sortSalary() {
+ 
+    employees.sort(function(a, b) {
+ 
+        return a.salary - b.salary;
+ 
+    });
+ 
+    console.log("Employees Sorted by Salary");
+ 
+    viewEmployees();
+ 
+}
+ 
+sortSalary();
+ 
+ 
+// =======================================
+// 7. Find Employee by Name
+// =======================================
+ 
+function searchName(name) {
+ 
+    let employee = employees.find(function(emp) {
+ 
+        return emp.name.toLowerCase() === name.toLowerCase();
+ 
+    });
+ 
+    if (employee) {
+ 
+        console.log("Employee Found");
+        console.log(employee);
+ 
+    } else {
+ 
+        console.log("Employee Not Found");
+ 
+    }
+ 
+}
+ 
+searchName("Avi");
+ 
+ 
+// =======================================
+// 8. Display using Destructuring
+// =======================================
+ 
+function displayDetails() {
+ 
+    console.log("===== EMPLOYEE DETAILS =====");
+ 
+    employees.forEach(function(emp) {
+ 
+        let { id, name, department, salary } = emp;
+ 
+        console.log(`
+-----------------------------
+Employee ID   : ${id}
+Employee Name : ${name}
+Department    : ${department}
+Salary        : ₹${salary}
+-----------------------------
+`);
+ 
+    });
+ 
+}
+ 
+displayDetails();
+ 
+ 
+// =======================================
+// Total Employees
+// =======================================
+ 
+console.log("Total Employees :", employees.length);
+ 
+ 
+</script>
+</body>
+</html>

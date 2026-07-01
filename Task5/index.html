@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EMPLOYEE MANAGEMENT CONSOLE SYSTEM</title>
+</head>
+<body>
+  <script>
+ 
+ 
+// 1.
+ 
+function yearlySalary(monthlySalary) {
+    return monthlySalary * 12;
+}
+ 
+console.log("Yearly Salary : ₹" + yearlySalary(45000));
+ 
+ 
+// 2.
+ 
+function checkResult(mark) {
+    if (mark >= 35) {
+        return "Pass";
+    } else {
+        return "Fail";
+    }
+}
+ 
+console.log("Student Result :", checkResult(72));
+ 
+ 
+// 3.
+ 
+function foodBill(price, quantity) {
+    return price * quantity;
+}
+ 
+console.log("Total Bill : ₹" + foodBill(180, 3));
+ 
+ 
+ 
+// 4.
+ 
+function welcomeEmployee(name, department) {
+    console.log("Welcome " + name);
+    console.log("Department :", department);
+}
+ 
+welcomeEmployee("Naveen", "Development");
+ 
+ 
+ 
+// 5.
+ 
+function finalAmount(price, discount) {
+    return price - discount;
+}
+ 
+console.log("Final Amount : ₹" + finalAmount(5000, 500));
+ 
+ 
+// 6.
+ 
+function dashboard() {
+    console.log("Loading Dashboard...");
+}
+ 
+function login(callback) {
+    console.log("Login Successful");
+    callback();
+}
+ 
+login(dashboard);
+ 
+ 
+ 
+// 7.
+ 
+function foodDelivery(step) {
+    step();
+}
+ 
+foodDelivery(() => console.log("Order Received"));
+foodDelivery(() => console.log("Preparing Food"));
+foodDelivery(() => console.log("Out for Delivery"));
+foodDelivery(() => console.log("Delivered"));
+ 
+ 
+ 
+// 8.
+ 
+function* luckyDraw() {
+    yield "10%";
+    yield "20%";
+    yield "50%";
+    yield "Better Luck Next Time";
+}
+ 
+const coupon = luckyDraw();
+ 
+console.log("Coupon :", coupon.next().value);
+console.log("Coupon :", coupon.next().value);
+console.log("Coupon :", coupon.next().value);
+console.log("Coupon :", coupon.next().value);
+ 
+ 
+ 
+// 9.
+ 
+function bonus(salary) {
+    return function(extraBonus) {
+        console.log("Total Salary :", salary + extraBonus);
+    };
+}
+ 
+bonus(50000)(5000);
+ 
+ 
+ 
+// 10.
+ 
+ 
+const employeePersonal = {
+    name: "kartheek",
+    age: 23
+};
+ 
+const employeeOffice = {
+    id: 3095,
+    department: "Development"
+};
+ 
+const employee = {
+    ...employeePersonal,
+    ...employeeOffice
+};
+ 
+console.log(employee);
+ 
+ 
+ 
+// 11.
+ 
+const cart1 = ["Mobile", "Laptop"];
+const cart2 = ["Headphone", "Mouse"];
+ 
+const cart = [...cart1, ...cart2];
+ 
+console.log(cart);
+ 
+ 
+// 12.
+ 
+function student(name, ...marks) {
+ 
+    let total = marks.reduce((sum, mark) => sum + mark, 0);
+    let average = total / marks.length;
+ 
+    console.log(" Student :", name);
+    console.log("Total Marks :", total);
+    console.log("Average :", average);
+}
+ 
+student("kartheek", 90, 85, 88, 95);
+ 
+// 13.
+ 
+const product = {
+    name: "Macbook",
+    price: 65000,
+    brand: "Apple",
+    stock: 20
+};
+ 
+const { name, price } = product;
+ 
+console.log("Name :", name);
+console.log("Price :", price);
+ 
+ 
+ 
+// 14.
+ 
+const customer = [303, "kartheek","Hyderabad", 9398126365];
+ 
+const [id, customerName, city] = customer;
+ 
+console.log("ID :", id);
+console.log("Name :", customerName);
+console.log("City :", city);
+ 
+ 
+ 
+// 15.
+ 
+let cartProducts = ["Mobile", "Laptop"];
+ 
+cartProducts.push("Headphone");
+ 
+console.log(cartProducts);
+ 
+ 
+ 
+// 16.
+ 
+let products = ["Iphone", "Macbook", "Ipad"];
+ 
+products.pop();
+ 
+console.log(products);
+ 
+ 
+ 
+// 17.
+ 
+let employees = ["kartheek", "prasad", "teja", "Avi"];
+ 
+employees.splice(2, 1, "Alluarjun");
+ 
+console.log(employees);
+ 
+ 
+// 18.
+ 
+let productList = ["Mouse", "Keyboard", "Monitor", "Laptop"];
+ 
+console.log("Laptop Available :", productList.includes("Laptop"));
+ 
+ 
+ 
+// 19.
+ 
+let salaries = [25000, 45000, 30000, 70000];
+ 
+salaries.sort((a, b) => a - b);
+ 
+console.log(salaries);
+ 
+ 
+ 
+// 20.
+ 
+let messages = ["Hi", "Hello", "How are you?", "Good Morning"];
+ 
+messages.reverse();
+ 
+console.log( messages);
+ 
+</script>
+</body>
+</html>
