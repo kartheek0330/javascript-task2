@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary Details</title>
+</head>
+<body>
+
+<script>
+
+// =====================================
+// Employee Management System
+// =====================================
+
+let employees = [
+    {
+        name: "Kartheek",
+        id: 101,
+        salary: 47000
+    },
+    {
+        name: "Prasad",
+        id: 102,
+        salary: 60000
+    },
+    {
+        name: "Teja",
+        id: 103,
+        salary: 55000
+    }
+];
+
+// =====================================
+// Task 1 - Find Highest Salary
+// =====================================
+
+console.log("===== Task 1 =====");
+
+let highestEmployee = employees[0];
+
+for (let emp of employees) {
+    if (emp.salary > highestEmployee.salary) {
+        highestEmployee = emp;
+    }
+}
+
+console.log("Highest Salary :", highestEmployee.salary);
+console.log("Employee Name :", highestEmployee.name);
+
+
+// =====================================
+// Task 2 - Search Employee by ID
+// =====================================
+
+console.log("\n===== Task 2 =====");
+
+let searchId = 103;
+let found = false;
+
+for (let emp of employees) {
+
+    if (emp.id === searchId) {
+        console.log("Employee Found");
+        console.log("Name :", emp.name);
+        console.log("Salary :", emp.salary);
+        found = true;
+        break;
+    }
+
+}
+
+if (!found) {
+    console.log("Employee Not Found");
+}
+
+
+// =====================================
+// Task 3 - Salary After Bonus
+// =====================================
+
+console.log("\n===== Task 3 =====");
+
+let bonus = 5000;
+
+for (let emp of employees) {
+    console.log(emp.name + " : " + (emp.salary + bonus));
+}
+
+
+// =====================================
+// Task 4 - Experience Check
+// =====================================
+
+console.log("\n===== Task 4 =====");
+
+let experienceEmployees = [
+    {
+        name: "Kartheek",
+        experience: 3
+    },
+    {
+        name: "Prasad",
+        experience: 5
+    },
+    {
+        name: "Teja",
+        experience: 4
+    }
+];
+
+for (let emp of experienceEmployees) {
+
+    if (emp.experience >= 5) {
+        console.log(emp.name + " - Senior Employee");
+    } else {
+        console.log(emp.name + " - Junior Employee");
+    }
+
+}
+
+
+// =====================================
+// Task 5 - Display Employee Names
+// =====================================
+
+console.log("\n===== Task 5 =====");
+
+for (let emp of employees) {
+    console.log(emp.name);
+}
+
+
+// =====================================
+// Task 6 - Display Employee IDs
+// =====================================
+
+console.log("\n===== Task 6 =====");
+
+for (let emp of employees) {
+    console.log(emp.id);
+}
+
+
+// =====================================
+// Task 7 - Total Salary
+// =====================================
+
+console.log("\n===== Task 7 =====");
+
+let totalSalary = 0;
+
+for (let emp of employees) {
+    totalSalary += emp.salary;
+}
+
+console.log("Total Salary :", totalSalary);
+
+
+// =====================================
+// Task 8 - Salary Greater Than 55000
+// =====================================
+
+console.log("\n===== Task 8 =====");
+
+for (let emp of employees) {
+
+    if (emp.salary > 55000) {
+        console.log(emp.name);
+    }
+
+}
+
+
+// =====================================
+// Task 9 - Increase Salary
+// =====================================
+
+console.log("\n===== Task 9 =====");
+
+for (let emp of employees) {
+    console.log(emp.name + " : " + (emp.salary + 5000));
+}
+
+
+// =====================================
+// Task 10 - Employee Report
+// =====================================
+
+console.log("\n===== Task 10 =====");
+
+for (let emp of employees) {
+
+    console.log(`
+Employee Name : ${emp.name}
+Employee ID   : ${emp.id}
+Salary        : ₹${emp.salary}
+`);
+
+}
+
+
+// =====================================
+// Challenge Task
+// =====================================
+
+console.log("\n========== Challenge Task ==========");
+
+// Total Employees
+console.log("Total Employees :", employees.length);
+
+// Highest Salary
+let highest = employees[0];
+
+for (let emp of employees) {
+    if (emp.salary > highest.salary) {
+        highest = emp;
+    }
+}
+
+console.log("Highest Salary :", highest.salary);
+console.log("Highest Salary Employee :", highest.name);
+
+// Lowest Salary
+let lowest = employees[0];
+
+for (let emp of employees) {
+    if (emp.salary < lowest.salary) {
+        lowest = emp;
+    }
+}
+
+console.log("Lowest Salary :", lowest.salary);
+console.log("Lowest Salary Employee :", lowest.name);
+
+// Total Salary
+let total = 0;
+
+for (let emp of employees) {
+    total += emp.salary;
+}
+
+console.log("Total Salary :", total);
+
+// Employees earning more than ₹40000
+console.log("\nEmployees Earning More Than ₹40000");
+
+for (let emp of employees) {
+
+    if (emp.salary > 40000) {
+        console.log(emp.name);
+    }
+
+}
+
+// Search Employee by ID
+console.log("\nSearch Employee");
+
+let searchEmployeeId = 102;
+let employeeFound = false;
+
+for (let emp of employees) {
+
+    if (emp.id === searchEmployeeId) {
+
+        console.log("Employee Found");
+        console.log("Name :", emp.name);
+        console.log("Salary :", emp.salary);
+
+        employeeFound = true;
+        break;
+    }
+
+}
+
+if (!employeeFound) {
+    console.log("Employee Not Found");
+}
+
+// Add ₹5000 Bonus
+console.log("\nSalary After Bonus");
+
+for (let emp of employees) {
+    console.log(emp.name + " : " + (emp.salary + 5000));
+}
+
+// Professional Report
+console.log("\nProfessional Employee Report");
+
+for (let emp of employees) {
+
+    console.log(`
+--------------------------------
+Employee Name : ${emp.name}
+Employee ID   : ${emp.id}
+Salary        : ₹${emp.salary}
+--------------------------------
+`);
+
+}
+
+</script>
+
+</body>
+</html>
