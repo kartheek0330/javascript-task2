@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EMPLOYEE MANAGEMENT CONSOLE SYSTEM</title>
+</head>
+<body>
+  <script>
+ 
+// EMPLOYEE PAYROLL SYSTEM
+ 
+let employees = [
+    {
+        id: 101,
+        name: "Karthik",
+        department: "Developer",
+        salary: 35000
+    },
+    {
+        id: 102,
+        name: "Teja",
+        department: "ML Engineer",
+        salary: 55000
+    },
+    {
+        id: 103,
+        name: "Pasad",
+        department: "HR",
+        salary: 42000
+    },
+    {
+        id: 104,
+        name: "Rvindra",
+        department: "Manager",
+        salary: 70000
+    }
+];
+ 
+ 
+// View Employees
+ 
+ 
+function viewEmployees() {
+    console.log("------ Employee List ------");
+ 
+    employees.forEach(function(emp) {
+        console.log(
+            "ID : " + emp.id +
+            " | Name : " + emp.name +
+            " | Department : " + emp.department +
+            " | Salary : ₹" + emp.salary
+        );
+    });
+}
+ 
+ 
+// Search Employee by ID
+ 
+ 
+function searchEmployee(id) {
+ 
+    let employee = employees.find(function(emp) {
+        return emp.id === id;
+    });
+ 
+    if(employee){
+        console.log("Employee Found");
+        console.log(employee);
+    }
+    else{
+        console.log("Employee Not Found");
+    }
+}
+ 
+ 
+// Add Bonus
+ 
+function addBonus(id, bonus, callback){
+ 
+    let employee = employees.find(function(emp){
+        return emp.id === id;
+    });
+ 
+    if(employee){
+ 
+        employee.salary = employee.salary + bonus;
+ 
+        console.log(employee.name + " received bonus of ₹" + bonus);
+ 
+        callback(employee);
+    }
+    else{
+        console.log("Employee Not Found");
+    }
+ 
+}
+ 
+// Callback Function
+ 
+function displayUpdatedEmployee(employee){
+ 
+    console.log("Updated Employee");
+ 
+    console.log(employee);
+ 
+}
+ 
+ 
+// Highest Salary
+ 
+ 
+function highestSalary(){
+ 
+    let highest = employees.reduce(function(max, emp){
+ 
+        if(emp.salary > max.salary){
+            return emp;
+        }
+        else{
+            return max;
+        }
+ 
+    });
+ 
+    console.log("Highest Salary Employee");
+ 
+    console.log(highest);
+ 
+}
+ 
+ 
+// Lowest Salary
+ 
+ 
+function lowestSalary(){
+ 
+    let lowest = employees.reduce(function(min, emp){
+ 
+        if(emp.salary < min.salary){
+            return emp;
+        }
+        else{
+            return min;
+        }
+ 
+    });
+ 
+    console.log("Lowest Salary Employee");
+ 
+    console.log(lowest);
+ 
+}
+ 
+ 
+// Total Salary
+ 
+ 
+function totalSalary(){
+ 
+    let total = employees.reduce(function(sum, emp){
+ 
+        return sum + emp.salary;
+ 
+    },0);
+ 
+    console.log("Total Salary = ₹" + total);
+ 
+}
+ 
+ 
+// Filter Salary Above 40000
+ 
+ 
+function salaryAbove40000(){
+ 
+    let result = employees.filter(function(emp){
+ 
+        return emp.salary > 40000;
+ 
+    });
+ 
+    console.log("Employees Salary Above ₹40000");
+ 
+    console.log(result);
+ 
+}
+ 
+ 
+// Employee Report using map
+ 
+ 
+function employeeReport(){
+ 
+    let report = employees.map(function(emp){
+ 
+        return `Employee ID : ${emp.id}
+Employee Name : ${emp.name}
+Department : ${emp.department}
+Salary : ₹${emp.salary}`;
+ 
+    });
+ 
+    console.log("------ Employee Report ------");
+ 
+    report.forEach(function(data){
+ 
+        console.log(data);
+        console.log("---------------------------");
+ 
+    });
+ 
+}
+ 
+ 
+// Current Date & Time
+ 
+ 
+function currentDateTime(){
+ 
+    let today = new Date();
+ 
+    console.log("Current Date : " + today.toLocaleDateString());
+ 
+    console.log("Current Time : " + today.toLocaleTimeString());
+ 
+}
+ 
+ 
+// Fetch Employee Data
+ 
+ 
+function fetchEmployees(){
+ 
+    fetch("https://jsonplaceholder.typicode.com/users")
+ 
+    .then(function(response){
+ 
+        return response.json();
+ 
+    })
+ 
+    .then(function(data){
+ 
+        console.log("Employee Data From API");
+ 
+        console.log(data);
+ 
+    })
+ 
+    .catch(function(error){
+ 
+        console.log("Error");
+ 
+        console.log(error);
+ 
+    });
+ 
+}
+ 
+ 
+// Exit
+ 
+ 
+function exitProgram(){
+ 
+    console.log("Thank You for Using Employee Payroll System");
+ 
+}
+ 
+ 
+// Menu using switch
+ 
+ 
+let choice = 1;
+ 
+// Change value from 1 to 10 to test different features.
+ 
+switch(choice){
+ 
+    case 1:
+        viewEmployees();
+        break;
+ 
+    case 2:
+        searchEmployee(103);
+        break;
+ 
+    case 3:
+        addBonus(102,5000,displayUpdatedEmployee);
+        break;
+ 
+    case 4:
+        highestSalary();
+        break;
+ 
+    case 5:
+        lowestSalary();
+        break;
+ 
+    case 6:
+        totalSalary();
+        break;
+ 
+    case 7:
+        salaryAbove40000();
+        break;
+ 
+    case 8:
+        employeeReport();
+        break;
+ 
+    case 9:
+        currentDateTime();
+        break;
+ 
+    case 10:
+        fetchEmployees();
+        break;
+ 
+    default:
+        exitProgram();
+ 
+}
+ 
+ 
+</script>
+</body>
+</html>

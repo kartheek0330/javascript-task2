@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EMPLOYEE MANAGEMENT CONSOLE SYSTEM</title>
+</head>
+<body>
+  <script>
+ 
+ 
+// Student Management System
+ 
+let students = [
+    {
+        name: "karthik",
+        id: 101,
+        mark: 85
+    },
+    {
+        name: "prasad",
+        id: 102,
+        mark: 45
+    },
+    {
+        name: "teja",
+        id: 103,
+        mark: 25
+    }
+];
+ 
+console.log("All Students");
+for(let i=0;i<students.length;i++){
+    console.log(students[i]);
+}
+ 
+console.log("Student Names");
+for(let i=0;i<students.length;i++){
+    console.log(students[i].name);
+}
+ 
+console.log("Student ID 102");
+for(let i=0;i<students.length;i++){
+    if(students[i].id===102){
+        console.log(students[i]);
+    }
+}
+ 
+console.log("Passed Students");
+for(let i=0;i<students.length;i++){
+    if(students[i].mark>=35){
+        console.log(students[i]);
+    }
+}
+ 
+console.log("Total Students : " + students.length);
+ 
+ 
+// Employee Salary System
+ 
+let employees = [
+    {
+        name:"karthik",
+        salary:30000
+    },
+    {
+        name:"prasad",
+        salary:45000
+    },
+    {
+        name:"teja",
+        salary:60000
+    }
+];
+ 
+let high = employees[0].salary;
+let low = employees[0].salary;
+let total1 = 0;
+ 
+for(let i=0;i<employees.length;i++){
+ 
+    if(employees[i].salary>high){
+        high=employees[i].salary;
+    }
+ 
+    if(employees[i].salary<low){
+        low=employees[i].salary;
+    }
+ 
+    employees[i].salary=employees[i].salary+5000;
+ 
+    total1=total1+employees[i].salary;
+}
+ 
+console.log("Highest Salary : " + high);
+console.log("Lowest Salary : " + low);
+ 
+console.log("After Bonus");
+console.log(employees);
+ 
+console.log("Total Salary : " + total1);
+ 
+console.log("Salary Above 40000");
+for(let i=0;i<employees.length;i++){
+    if(employees[i].salary>40000){
+        console.log(employees[i]);
+    }
+}
+ 
+ 
+//  Shopping Cart
+ 
+let products = [
+    {
+        name:"Iphone",
+        price:50000
+    },
+    {
+        name:"Macbook",
+        price:50000
+    },
+    {
+        name:"Ipad",
+        price:150000
+    }
+];
+ 
+let bill=0;
+ 
+console.log("Product Names");
+ 
+for(let i=0;i<products.length;i++){
+    console.log(products[i].name);
+    bill=bill+products[i].price;
+}
+ 
+console.log("Total Bill : " + bill);
+ 
+console.log("Searching Mouse");
+ 
+for(let i=0;i<products.length;i++){
+    if(products[i].name==="Mouse"){
+        console.log(products[i]);
+    }
+}
+ 
+let finalBill=0;
+ 
+console.log("After Discount");
+ 
+for(let i=0;i<products.length;i++){
+    products[i].price=products[i].price-(products[i].price*10/100);
+    console.log(products[i]);
+    finalBill=finalBill+products[i].price;
+}
+ 
+console.log("Final Bill : " + finalBill);
+ 
+ 
+//  Bank Account
+ 
+let account={
+    name:"karthik",
+    balance:50000
+};
+ 
+account.balance=account.balance+10000;
+ 
+account.balance=account.balance-5000;
+ 
+console.log("Current Balance : " + account.balance);
+ 
+if(account.balance<20000){
+    console.log("Balance Low");
+}
+else{
+    console.log("Balance Sufficient");
+}
+ 
+console.log(account);
+ 
+ 
+//  Company Login (Browser)
+ 
+let username=prompt("Enter Username");
+let password=prompt("Enter Password");
+ 
+if(username==="admin" && password==="1234"){
+    alert("Welcome");
+}
+else{
+    alert("Invalid Username or Password");
+}
+ 
+ 
+// Traffic Signal
+ 
+let signal="Red";
+ 
+switch(signal){
+ 
+    case "Red":
+        console.log("Stop");
+        break;
+ 
+    case "Yellow":
+        console.log("Ready");
+        break;
+ 
+    case "Green":
+        console.log("Go");
+        break;
+ 
+    default:
+        console.log("Invalid Signal");
+}
+ 
+ 
+// ATM Machine (Browser)
+ 
+let balance=50000;
+ 
+let choice=Number(prompt("1 Balance\n2 Deposit\n3 Withdraw\n4 Exit"));
+ 
+switch(choice){
+ 
+    case 1:
+        alert("Balance : " + balance);
+        break;
+ 
+    case 2:
+        let deposit=Number(prompt("Enter Deposit"));
+        balance=balance+deposit;
+        alert(balance);
+        break;
+ 
+    case 3:
+        let withdraw=Number(prompt("Enter Withdraw"));
+        balance=balance-withdraw;
+        alert(balance);
+        break;
+ 
+    case 4:
+        alert("Thank You");
+        break;
+ 
+    default:
+        alert("Invalid Choice");
+}
+ 
+ 
+// Cricket Score
+ 
+let score=[10,25,40,60,80,100];
+ 
+let highest=score[0];
+let lowest=score[0];
+let total=0;
+ 
+for(let i=0;i<score.length;i++){
+ 
+    if(score[i]>highest){
+        highest=score[i];
+    }
+ 
+    if(score[i]<lowest){
+        lowest=score[i];
+    }
+ 
+    total=total+score[i];
+}
+ 
+let average=total/score.length;
+ 
+console.log("Highest : " + highest);
+console.log("Lowest : " + lowest);
+console.log("Total : " + total);
+console.log("Average : " + average);
+ 
+ 
+// Movie Ticket Booking (Browser)
+ 
+let age=Number(prompt("Enter Age"));
+ 
+let ticket=confirm("Do you want to book a movie ticket?");
+ 
+if(age>=18 && ticket){
+    alert("Movie Allowed");
+}
+else{
+    alert("Not Allowed");
+}
+ 
+ 
+//  Hospital Appointment (Browser)
+ 
+let token=Number(prompt("Enter Token Number"));
+ 
+switch(token){
+ 
+    case 1:
+        alert("Doctor A");
+        break;
+ 
+    case 2:
+        alert("Doctor B");
+        break;
+ 
+    case 3:
+        alert("Doctor C");
+        break;
+ 
+    default:
+        alert("Invalid Token");
+}
+ 
+ 
+// Array Methods
+ 
+let fruits=["Apple","Orange","Banana"];
+ 
+console.log(fruits);
+ 
+fruits.push("Mango");
+console.log(fruits);
+ 
+fruits.pop();
+console.log(fruits);
+ 
+fruits.shift();
+console.log(fruits);
+ 
+fruits.unshift("Grapes");
+console.log(fruits);
+ 
+fruits.splice(1,1,"Pineapple");
+console.log(fruits);
+ 
+let newFruit=fruits.slice(0,2);
+ 
+console.log(newFruit);
+ 
+ 
+//  Higher Order Methods
+ 
+let employee2=[
+{name:"A",salary:20000},
+{name:"B",salary:35000},
+{name:"C",salary:50000},
+{name:"D",salary:70000}
+];
+ 
+let bonus=employee2.map(function(emp){
+    return {
+        name:emp.name,
+        salary:emp.salary+5000
+    };
+});
+ 
+console.log(bonus);
+ 
+let filterSalary=employee2.filter(function(emp){
+    return emp.salary>30000;
+});
+ 
+console.log(filterSalary);
+ 
+let employee=employee2.find(function(emp){
+    return emp.salary===50000;
+});
+ 
+console.log(employee);
+ 
+let totalSalary=employee2.reduce(function(total,emp){
+    return total+emp.salary;
+},0);
+ 
+console.log(totalSalary);
+ 
+let someSalary=employee2.some(function(emp){
+    return emp.salary>60000;
+});
+ 
+console.log(someSalary);
+ 
+let everySalary=employee2.every(function(emp){
+    return emp.salary>15000;
+});
+ 
+console.log(everySalary);
+ 
+ 
+// String Practice
+ 
+let company=" Stackly IT ";
+ 
+console.log(company.toUpperCase());
+ 
+console.log(company.toLowerCase());
+ 
+console.log(company.trim());
+ 
+console.log(company.replace("IT","Software"));
+ 
+console.log(company.includes("Stackly"));
+ 
+console.log(company.split(" "));
+ 
+ 
+// Digital Clock
+ 
+let count=0;
+ 
+let clock=setInterval(function(){
+ 
+    let time=new Date();
+ 
+    console.log(time.toLocaleTimeString());
+ 
+    count++;
+ 
+    if(count===10){
+        clearInterval(clock);
+        console.log("Clock Stopped");
+    }
+ 
+},1000);
+ 
+ 
+// Fake Store API
+ 
+fetch("https://fakestoreapi.com/products")
+.then(function(response){
+    return response.json();
+})
+.then(function(products){
+ 
+    console.log("Product Titles");
+ 
+    products.forEach(function(product){
+        console.log(product.title);
+    });
+ 
+    console.log("Prices");
+ 
+    products.forEach(function(product){
+        console.log(product.price);
+    });
+ 
+    console.log("Price Greater Than 100");
+ 
+    products.forEach(function(product){
+        if(product.price>100){
+            console.log(product);
+        }
+    });
+ 
+    console.log("Total Products : " + products.length);
+ 
+    console.log("Categories");
+ 
+    products.forEach(function(product){
+        console.log(product.category);
+    });
+ 
+})
+.catch(function(error){
+    console.log(error);
+});
+ 
+</script>
+</body>
+</html>
