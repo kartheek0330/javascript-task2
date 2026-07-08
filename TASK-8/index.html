@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Store</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#count{
+    margin-bottom:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.controls{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.controls input,
+.controls select{
+    padding:10px;
+    font-size:16px;
+}
+
+#products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 5px gray;
+    text-align:center;
+}
+
+.card img{
+    width:150px;
+    height:150px;
+    object-fit:contain;
+    margin:auto;
+    display:block;
+}
+
+.card h3{
+    margin:10px 0;
+    font-size:16px;
+}
+
+.card p{
+    margin:8px 0;
+}
+
+.card button{
+    margin-top:10px;
+    padding:10px 20px;
+    border:none;
+    background:green;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.card button:hover{
+    background:darkgreen;
+}
+
+.error{
+    text-align:center;
+    color:red;
+    font-size:25px;
+    margin-top:50px;
+}
+
+@media(max-width:900px){
+    #products{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    #products{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🛒 Product Store</h1>
+
+<h2 id="count"></h2>
+
+<div class="controls">
+
+<input type="text" id="search" placeholder="Search Product">
+
+<select id="category">
+<option value="all">All Categories</option>
+</select>
+
+<select id="price">
+<option value="all">All Prices</option>
+<option value="50">Below ₹50</option>
+<option value="100">Below ₹100</option>
+<option value="500">Below ₹500</option>
+<option value="1000">Below ₹1000</option>
+</select>
+
+</div>
+
+<div id="products"></div>
+
+<script>
+
+let allProducts=[];
+
+fetch("https://fakestoreapi.com/products")
+
+.then(function(response){
+    return response.json();
+})
+
+.then(function(products){
+
+    allProducts=products;
+
+    loadCategories();
+
+    displayProducts(allProducts);
+
+})
+
+.catch(function(){
+
+document.getElementById("products").innerHTML=`
+
+<div class="error">
+
+<h2>❌ Unable to Load Products</h2>
+
+<p>Please try again later.</p>
+
+</div>
+
+`;
+
+});
+
+
+function loadCategories(){
+
+let category=document.getElementById("category");
+
+let categories=[];
+
+allProducts.forEach(function(product){
+
+if(!categories.includes(product.category)){
+categories.push(product.category);
+}
+
+});
+
+categories.forEach(function(cat){
+
+category.innerHTML+=`
+<option value="${cat}">${cat}</option>
+`;
+
+});
+
+}
+
+
+
+function displayProducts(products){
+
+document.getElementById("count").innerHTML=
+`Total Products : ${products.length}`;
+
+let data="";
+
+if(products.length==0){
+
+document.getElementById("products").innerHTML=
+"<h2 style='text-align:center'>No Products Found</h2>";
+
+return;
+
+}
+
+products.forEach(function(product,index){
+
+let desc=product.description;
+
+if(desc.length>100){
+desc=desc.substring(0,100)+" Read More...";
+}
+
+data+=`
+
+<div class="card">
+
+<h3>Product ${index+1}</h3>
+
+<img src="${product.image}">
+
+<h3>${product.title}</h3>
+
+<p><b>Category :</b> ${product.category}</p>
+
+<p><b>Price :</b> ₹${product.price}</p>
+
+<p><b>Rating :</b> ⭐ ${product.rating.rate}</p>
+
+<p>${desc}</p>
+
+<button>Buy Now</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("products").innerHTML=data;
+
+}
+
+
+
+document.getElementById("search").addEventListener("keyup",filterProducts);
+
+document.getElementById("category").addEventListener("change",filterProducts);
+
+document.getElementById("price").addEventListener("change",filterProducts);
+
+
+
+function filterProducts(){
+
+let text=document.getElementById("search").value.toLowerCase();
+
+let category=document.getElementById("category").value;
+  
+let price=document.getElementById("price").value;
+
+let result=[];
+
+allProducts.forEach(function(product){
+
+let searchMatch=false;
+let categoryMatch=false;
+let priceMatch=false;
+
+if(product.title.toLowerCase().includes(text)){
+searchMatch=true;
+}
+
+if(category=="all" || product.category==category){
+categoryMatch=true;
+}
+
+if(price=="all" || product.price<price){
+priceMatch=true;
+}
+
+if(searchMatch && categoryMatch && priceMatch){
+result.push(product);
+}
+
+});
+
+displayProducts(result);
+
+}
+
+</script>
+
+</body>
+</html>
