@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Store</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<h1>🛒 Product Store</h1>
+
+<input type="text" id="search" placeholder="Search Product">
+
+<select id="category">
+    <option value="all">All Categories</option>
+    <option value="electronics">Electronics</option>
+    <option value="jewelery">Jewellery</option>
+    <option value="men's clothing">Men's Clothing</option>
+    <option value="women's clothing">Women's Clothing</option>
+</select>
+
+<input type="number" id="price" placeholder="Maximum Price">
+
+<button id="btn">Search</button>
+
+<h3 id="count"></h3>
+
+<p id="message"></p>
+
+<div id="products"></div>
+
+<script>
+
+let products = [];
+
+// Fetch products from API
+fetch("https://fakestoreapi.com/products")
+.then(function(response){
+    return response.json();
+})
+.then(function(data){
+    products = data;
+    displayProducts(products);
+})
+.catch(function(error){
+    console.log(error);
+});
+
+// Search Button
+document.getElementById("btn").onclick = function(){
+
+    let searchText = document.getElementById("search").value.toLowerCase();
+    let category = document.getElementById("category").value;
+    let price = document.getElementById("price").value;
+
+    let output = "";
+    let total = 0;
+
+    products.forEach(function(item){
+
+        let show = true;
+
+        // Search by title
+        if(!item.title.toLowerCase().includes(searchText)){
+            show = false;
+        }
+
+        // Category filter
+        if(show && category != "all"){
+            if(item.category != category){
+                show = false;
+            }
+        }
+
+        // Price filter
+        if(show && price != ""){
+            if(item.price > Number(price)){
+                show = false;
+            }
+        }
+
+        if(show){
+
+            total++;
+
+            output += `
+            <div class="card">
+                <img src="${item.image}">
+                <h3>${item.title}</h3>
+                <p><b>Price:</b> $${item.price}</p>
+                <p>${item.category}</p>
+            </div>
+            `;
+        }
+
+    });
+
+    document.getElementById("products").innerHTML = output;
+    document.getElementById("count").innerHTML = "Total Products : " + total;
+
+    if(total == 0){
+        document.getElementById("message").innerHTML = "No Products Found";
+    }else{
+        document.getElementById("message").innerHTML = "";
+    }
+
+};
+
+// Display all products
+function displayProducts(list){
+
+    let output = "";
+    let total = 0;
+
+    list.forEach(function(item){
+
+        total++;
+
+        output += `
+        <div class="card">
+            <img src="${item.image}">
+            <h3>${item.title}</h3>
+            <p><b>Price:</b> $${item.price}</p>
+            <p>${item.category}</p>
+        </div>
+        `;
+
+    });
+
+    document.getElementById("products").innerHTML = output;
+    document.getElementById("count").innerHTML = "Total Products : " + total;
+
+}
+
+</script>
+
+</body>
+</html>
